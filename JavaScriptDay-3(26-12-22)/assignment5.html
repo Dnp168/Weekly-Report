@@ -1,0 +1,59 @@
+<html>
+
+<head>
+    <title>
+        Assignment 5
+    </title>
+</head>
+
+<body>
+    <div style="margin: 10%; margin-left: 40%;">
+        <h1>
+            Assignment 5
+        </h1>
+        <div id="container">
+    
+            <div>
+                <p>Please select your technology :
+                    <span>
+                        <input type="radio" id="php" name="language" value="PHP" onclick="display()">
+                        <label for="php">PHP</label>
+                    </span>
+                    <span>
+                        <input type="radio" id="asp" name="language" value="ASP.NET" onclick="display()">
+                        <label for="asp">ASP.NET</label>
+                    </span>
+                    <span>
+                        <input type="radio" id="jsp" name="language" value="JSP" onclick="display()">
+                        <label for="jsp">JSP</label>
+                    </span>
+                    <span>
+                        <input type="radio" id="perl" name="language" value="PERL" onclick="display()">
+                        <label for="perl">PERL</label>
+                    </span>
+                <p id="result"></p>
+                </p>
+                <script>
+                    function display() {
+                        if (document.getElementById('php').checked) {
+                            document.getElementById("result").innerHTML
+                                = "You have Selected " + document.getElementById("php").value;
+                        }
+                        else if (document.getElementById('asp').checked) {
+                            document.getElementById("result").innerHTML
+                                = "You have Selected " + document.getElementById("asp").value;
+                        }
+                        else if (document.getElementById('jsp').checked) {
+                            document.getElementById("result").innerHTML
+                                = "You have Selected " + document.getElementById("jsp").value;
+                        }
+                        else {
+                            document.getElementById("result").innerHTML
+                                = "You have Selected " + document.getElementById("perl").value;
+                        }
+                    }
+                </script>
+    </div>
+</body>
+
+</html>

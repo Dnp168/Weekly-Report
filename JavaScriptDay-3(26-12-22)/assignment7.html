@@ -1,0 +1,57 @@
+<html>
+
+<head>
+  <title>Assignment 7</title>
+</head>
+
+<body>
+
+  <div>
+    <h1>
+      Assignment 7
+    </h1><br>
+    <label for="country">Choose your country: </label> <br><br>
+    <input type="checkbox" id="checkall" name="checkall" onclick="checkAll()">
+    <label for="checkall">Check All</label><br>
+    <input type="checkbox" id="usa" name="row" value="1" onchange="checkChange()">
+    <label for="usa">USA</label> <br>
+    <input type="checkbox" id="uk" name="row" value="2" onchange="checkChange()">
+    <label for="uk">UK</label> <br>
+    <input type="checkbox" id="india" name="row" value="3" onchange="checkChange()">
+    <label for="india">INDIA</label><br>
+    <input type="checkbox" id="asia" name="row" value="4" onchange="checkChange()">
+    <label for="asia">ASIA PACIFIC</label> <br>
+    <input type="checkbox" id="aus" name="row" value="5" onchange="checkChange()">
+    <label for="aus">AUSTRALIA</label> &ensp;
+  </div>
+  <script>
+    function checkAll() {
+      var selectall = document.getElementById('checkall');
+      if (selectall.checked == true) {
+        var checkboxes = document.getElementsByName("row");
+        for (var i = 0, n = checkboxes.length; i < n; i++) {
+          checkboxes[i].checked = true;
+        }
+      } else {
+        var checkboxes = document.getElementsByName("row");
+        for (var i = 0, n = checkboxes.length; i < n; i++) {
+          checkboxes[i].checked = false;
+        }
+      }
+    }
+
+    function checkChange() {
+
+      let Checkbox = document.querySelectorAll('input[name="row"]').length;
+      let Checked = document.querySelectorAll('input[name="row"]:checked').length;
+
+      // When total options equals to total checked option
+      if (Checkbox == Checked) {
+        document.getElementsByName("checkall")[0].checked = true;
+      } else {
+        document.getElementsByName("checkall")[0].checked = false;
+      }
+    }
+  </script>
+</body>
+</html>

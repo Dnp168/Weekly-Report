@@ -1,0 +1,138 @@
+<html>
+
+<head>
+    <title>
+        Form
+    </title>
+</head>
+
+<body>
+    <h2>HTML Form</h2>
+    <form action="" method="post" target="_blank" autocomplete="on"
+        oninput="x.value=parseInt(a.value)+parseInt(b.value)">
+        <!--Input type text-->
+            <label for="fname">First name: </label>
+            <input type="text" id="fname" name="fname">
+            <br>
+            <br>
+            <label for="lname">Last name: </label>
+            <input type="text" id="lname" name="lname">
+            <br>
+            <br>
+
+            <!--Input type radio-->
+            <label for="gender">Gender: </label>
+            <input type="radio" id="male" name="gender" value="Male">Male &ensp;
+            <input type="radio" id="female" name="gender" value="Female">Female<br>
+            <br>
+
+            <!--Input type checkbox-->
+            <label for="language">Language: </label>
+            <input type="checkbox" id="gujarati" name="gujarati" value="gujarati">Gujarati &ensp;
+            <input type="checkbox" id="hindi" name="hindi" value="hindi">Hindi &ensp;
+            <input type="checkbox" id="english" name="english" value="english">English <br>
+            <br>
+
+            <!--Input Type select and optgroup-->
+            <label for="city">Choose your car:</label>
+            <select name="cars" id="cars">
+                <option name="select" selected>--select--</option>
+                <optgroup label="Swedish Cars">
+                    <option value="volvo">Volvo</option>
+                    <option value="saab">Saab</option>
+                </optgroup>
+                <optgroup label="German Cars">
+                    <option value="mercedes">Mercedes</option>
+                    <option value="audi">Audi</option>
+                </optgroup>
+            </select>
+        <br>
+        <br>
+
+        <!--Input Type Text Area-->
+        <label for="address">Address: </label>
+        <textarea name="address" style="width:200px; height:100px;"></textarea><br>
+        <br>
+
+        <!--Fieldset and legend-->
+        <fieldset>
+            <legend>Contact Detail:</legend>
+            <label for="email">Email:</label>&ensp;
+            <input type="text" id="email" name="email"><br>
+            <label for="mobile">Mobile No.</label>&ensp;
+            <input type="text" id="mobile" name="mobile"><br>
+        </fieldset>
+        <br>
+        <!--datalist-->
+        <input list="sports" name="sport">Select any sport:
+        <datalist id="sports">
+            <option value="Cricket">
+            <option value="Vollyball">
+            <option value="Basketball">
+            <option value="Football">
+            <option value="hockey">
+        </datalist>
+        <br><br>
+
+        <!--Output tag-->
+        0
+        <input type="range" id="a" name="a" value="50">
+        100 +
+        <input type="number" id="b" name="b" value="50">
+        =
+        <output name="x" for="a b"></output><br>
+        <br>
+        <hr>
+
+        <!--Keygen tag-->
+        Username: <input type="text" name="uname">
+        <br><br>
+        Encryption: <keygen name="secure">
+        <input type="submit">
+        <br>
+        <br>
+        <hr>
+
+        <!--Html Vedio-->
+        <video width="320" height="240" controls>
+            <source src="mov_bbb.mp4" type="video/mp4">
+            <source src="mov_bbb.ogg" type="video/ogg">
+            Your browser does not support the video tag.
+        </video><br><br>
+
+        <!--html Audio-->
+        <audio controls>
+            <source src="lion.ogg" type="audio/ogg">
+            <source src="lion.wav" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio><br>
+        <br>
+
+        <!--article tag-->
+        <h1>The article element</h1>
+
+        <article>
+            <h2>Google Chrome</h2>
+            <p>Google Chrome is a web browser developed by Google, released in 2008. Chrome is the world's most popular
+                web browser today!</p>
+        </article>
+
+        <article>
+            <h2>Mozilla Firefox</h2>
+            <p>Mozilla Firefox is an open-source web browser developed by Mozilla. Firefox has been the second most
+                popular web browser since January, 2018.</p>
+        </article>
+
+        <article>
+            <h2>Microsoft Edge</h2>
+            <p>Microsoft Edge is a web browser developed by Microsoft, released in 2015. Microsoft Edge replaced
+                Internet Explorer.</p>
+        </article>
+        
+        <br>
+        <br>
+        <input type="submit" value="Submit"> &emsp; <input type="reset" value="Reset">
+    </form>
+</body>
+
+</html>

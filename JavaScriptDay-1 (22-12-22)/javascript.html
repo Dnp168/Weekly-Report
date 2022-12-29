@@ -1,0 +1,104 @@
+<html>
+
+<head>
+    <title>Javascript Day-3</title>
+</head>
+
+<body>
+
+   <h1>Javascript variables</h1>
+   <h1>Javascript Operators</h1>
+    <script>
+        alert('Hello, world!');
+        alert('Hello'); alert('World');
+
+        alert(3 + 1 + 2);
+        alert("Hello");
+
+        [1, 2].forEach(alert);
+
+        // let message;
+        // message = 'Hello!';
+        // alert(message);
+
+        let hello = 'Hello world!';
+
+        let message;
+
+        // copy 'Hello world' from hello into message
+        message = hello;
+
+        // now two variables hold the same data
+        alert(hello); // Hello world!
+        alert(message); // Hello world!
+
+        let $ = 1; // declared a variable with the name "$"
+        let _ = 2; // and now a variable with the name "_"
+
+        alert($ + _); // 3
+
+        //Constants
+
+
+
+        const COLOR_RED = "#F00";
+        const COLOR_GREEN = "#0F0";
+        const COLOR_BLUE = "#00F";
+        const COLOR_ORANGE = "#FF7F00";
+
+        // ...when we need to pick a color
+        let color = COLOR_ORANGE;
+        alert(color); // #FF7F00
+
+        //Data types
+
+        //Number
+        alert(1 / 0); // Infinity
+        alert(NaN + 1); // NaN
+        alert(3 * NaN); // NaN
+        alert("not a number" / 2 - 1); // NaN
+
+        //BigInt
+        // const bigInt = 1234567890123456789012345678901234567890n;
+
+        //String
+        let name = "John";
+        // embed a variable
+        alert(`Hello, ${name}!`); // Hello, John!
+        // embed an expression
+        alert(`the result is ${1 + 2}`); // the result is 3
+
+        //boolean
+        let isGreater = 4 > 1;
+        alert(isGreater);
+
+        //null
+        let age = null;
+
+        //undefined
+        let age1;
+        alert(age1);
+
+        let age2 = 100;
+        age2 = undefined; // change the value to undefined
+        alert(age2);
+
+        //typeof operator
+        typeof undefined // "undefined"
+        typeof 0 // "number"
+        typeof 10n // "bigint"
+        typeof true // "boolean"
+        typeof "foo" // "string"
+        typeof Symbol("id") // "symbol"
+        typeof Math // "object"  (1)
+        typeof null // "object"  (2)
+        typeof alert // "function"  (3)
+
+        //
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!--
+    1) numeric1.htm
+    Requirement :
+
+ 
+
+        -  ,
+            i.e., text characters and even null/empty values should not be allowed.
+        - Error messages : In case of empty field - "Please enter any numeric value" and
+            in case of non-numeric value - "Only numeric values are allowed. Please re-enter the value".
+            Final message - "Entered value is a numeric value".
+        -PROVIDE APPROPRIATE FOCUS TO THE ERROR FIELDS.
+        
+    HINT : Use in-built javascript "isNaN()" function.
+-->
+
+<html>
+
+<head>
+    <title>
+        Numeric 2
+    </title>
+</head>
+
+<body>
+    <center>
+        <h1 style="margin-top: 10%;">
+            Numeric 2
+        </h1>
+        <form name="myform" onsubmit="return validation()">
+            <label for="numeric">Please Enter the Number: </label>&nbsp;
+            <input type="text" name="num" style=" margin-top: 1%;"> &nbsp; <input type="submit" value="Submit"><br><br>
+            <div id="error" style="margin-left: 10%; display: none; "></div><br>
+            <div id="mess" style="margin-left: 10%; display: none; "></div>
+        </form>
+        <script>
+            var num1 = document.forms['myform']['num'];
+            var error = document.getElementById('error');
+            var mess = document.getElementById('mess');
+            function validation() {
+                if (num1.value == '') {
+                    error.innerHTML = "<b><h3> Please enter any numeric value </h3><b>";
+                    error.style.display = "block";
+                    return false;
+                }else{
+                    num2 = parseInt(num1);
+                if (!isNaN(num2)) {
+                    error.innerHTML = "<b><h3> Only numeric values are allowed. Please re-enter the value </h3><b>";
+                    error.style.display = "block";
+                    return false;
+                }
+                else {
+                    mess.innerHTML = "<b><h3> Entered value is a numeric value </h3><b>";
+                    mess.style.display = "block";
+                    return false;
+                }
+                }
+            }
+        </script>
+    </center>
+</body>
+
+</html>

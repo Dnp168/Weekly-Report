@@ -1,0 +1,35 @@
+<html>
+
+<head>
+    <title>Assignment 13</title>
+</head>
+
+<body>
+    <center>
+        <div style="margin-top: 3%; background-color: beige; width: 300px; height: 550px; border-style:groove;">
+            <h1>Assignment 13</h1>
+            <a href="#" onclick="show()">Add contact</a>
+            <br><br>
+            <div id="display"> </div>
+        </div>
+    </center>
+    <script>
+        function show() {
+            var textbox = document.createElement('input');
+            textbox.type = 'text';
+            textbox.id = "textBox";
+            var btn = document.createElement("button");
+            btn.innerHTML = "X";
+            btn.class = "button";
+            btn.onclick = close;
+            document.getElementById("display").appendChild(textbox);
+            document.getElementById("display").appendChild(btn);
+        }
+        function close() {
+            this.previousElementSibling.remove();
+            this.remove();
+        }
+    </script>
+</body>
+
+</html>
