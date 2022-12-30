@@ -1,0 +1,58 @@
+<html>
+
+<head>
+    <title>Assignment</title>
+</head>
+
+<body>
+    <center>
+        <div style="margin-top: 7%;">
+            <h1>Form</h1>
+            <form onsubmit="return display()">
+                <label for="fname">First name: </label>
+                <input type="text" id="fname" name="fname">
+                <br><br>
+                <label for="lname">Last name: </label>
+                <input type="text" id="lname" name="lname">
+                <br><br>
+                <label for="number">Phone:</label>
+                <input type="text" id="phone" name="phone">
+                <br><br>
+                <input type="submit" value="Submit" > &emsp; <input type="reset" value="Reset">
+                <br><br>
+                <div id="mess" style="margin-left: 10%; display: none; "></div>
+                <div id="err" style="margin-left: 10%; display: none; "></div>
+            </form>
+            <script>
+                var fname = document.getElementById('fname');
+                var lname = document.getElementById('lname');
+                var phone = document.getElementById('phone');
+                var mess = document.getElementById('mess');
+                var err = document.getElementById('err');
+                function display() {
+                    if (fname.value == "") {
+                        mess.innerHTML = "<b><h3> Please enter First Name </h3><b>";
+                        mess.style.display = "block";
+                        return false;
+                    }
+                    else if (lname.value = "") {
+                        mess.innerHTML = "<b><h3> Please enter Last Name </h3><b>";
+                        mess.style.display = "block";
+                        return false;
+                    }
+                    else if (phone.value = "") {
+                        mess.innerHTML = "<b><h3> Please enter Phone Number </h3><b>";
+                        mess.style.display = "block";
+                        return false;
+                    }
+                    else {
+                        err.innerHTML = "<b><h3>First Name : </h3><b>" + fname.value + "<br><b><h3>Last Name : </h3><b>" + lname.value + "<br><b><h3>Phone Number : </h3><b>" + phone.value;
+                        err.style.display = "block";
+                    }
+                }
+            </script>
+        </div>
+    </center>
+</body>
+
+</html>

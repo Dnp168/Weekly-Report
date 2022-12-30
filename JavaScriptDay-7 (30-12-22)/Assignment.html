@@ -1,0 +1,82 @@
+<html>
+
+<head>
+    <title>Assignment</title>
+</head>
+
+<body>
+    <center>
+        <div style="margin-top: 7%;">
+            <h1>Form</h1>
+            <form name="f1" onsubmit="return display()" method="post">
+                <label for="fname">First name: </label>
+                <input type="text" id="fname" name="fname">
+                <br><br>
+                <label for="lname">Last name: </label>
+                <input type="text" id="lname" name="lname">
+                <br><br>
+                <label for="number">Phone:</label>
+                <input type="text" id="phone" name="phone">
+                <br><br>
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email">
+                <br><br>
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address">
+                <br><br>
+                <input type="submit" value="Submit"> &emsp; <input type="reset" value="Reset">
+                <br><br>
+                <div id="mess" style="margin-left: 10%; display: none; "></div>
+                <div id="dis" style="margin-left: 10%; display: none; border: 1px; border-style: dotted; width: 300px; height: 120px;"></div>
+            </form>
+            <script>
+                function display() {
+                    var fname = document.forms.f1.fname.value;
+                    var lname = document.forms.f1.lname.value;
+                    var phone = document.forms.f1.phone.value;
+                    var email = document.forms.f1.email.value;
+                    var address = document.forms.f1.addess.value;
+                    var mess = document.getElementById('mess');
+                    var dis = document.getElementById('dis');
+                    if (fname == "") {
+                        mess.innerHTML = "<b><h3> Please enter First Name </h3><b>";
+                        mess.style.display = "block";
+                        return false;
+                    }
+                    if (lname == "") {
+                        mess.innerHTML = "<b><h3> Please enter Last Name </h3><b>";
+                        mess.style.display = "block";
+                        return false;
+                    }
+                    if (phone == "") {
+                        mess.innerHTML = "<b><h3> Please enter Phone Number </h3><b>";
+                        mess.style.display = "block";
+                        return false;
+                    }
+                    if (isNaN(phone)) {
+                        mess.innerHTML = "<b><h3> Please enter only numeric value </h3><b>";
+                        mess.style.display = "block";
+                        return false;
+                    }
+                    if (email == "") {
+                        mess.innerHTML = "<b><h3> Please enter Email </h3><b>";
+                        mess.style.display = "block";
+                        return false;
+                    }
+                    if (address == "") {
+                        mess.innerHTML = "<b><h3> Please enter Address </h3><b>";
+                        mess.style.display = "block";
+                        return false;
+                    }
+                    else {
+                        dis.innerHTML = "<b>Name : <b>" + fname + " " + lname + "<br> <br><b>Phone Number : <b>" + phone + "<br> <br><b>Email : <b>" + email + "<br> <br><b>Address : <b>" + address;
+                        dis.style.display = "block";
+                        return false;
+                    }
+                }
+            </script>
+        </div>
+    </center>
+</body>
+
+</html>

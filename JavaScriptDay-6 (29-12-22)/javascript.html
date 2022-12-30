@@ -1,0 +1,212 @@
+<html>
+<heda>
+    <title>Regular Expressions</title>
+</heda>
+
+<body>
+    <h1>JavaScript Regular Expressions</h1>
+    <!-- Using String search() With a Regular Expression
+    <p id="demo"></p>
+    <script>
+        let text = "Visit W3Schools!";
+        let n = text.search(/w3Schools/i);
+        document.getElementById("demo").innerHTML = n;
+    </script> -->
+
+    <!-- <p id="demo">Please visit Microsoft!</p>
+    <script>
+        function myFunction() {
+            let text = document.getElementById("demo").innerHTML;
+            document.getElementById("demo").innerHTML =
+                text.replace(/microsoft/i, "W3Schools");
+        }
+    </script> -->
+
+    <!-- <p id="demo"></p>
+    <script>
+        let text = "Is this all there is?";
+        let result = text.match(/is/g);
+        document.getElementById("demo").innerHTML = result; 
+    </script> -->
+
+    <!-- <p id="demo"></p>
+    <script>
+        let text = `is this
+        all it is`;
+        let result = text.match(/^is/gmi);
+        document.getElementById("demo").innerHTML = "Result is: " + result;
+    </script> -->
+
+    <!-- <p id="demo"></p>
+    <script>
+        let text = "Is this all there is?";
+        let result = text.match(/[h]/g);
+        document.getElementById("demo").innerHTML = result;
+    </script> -->
+
+    <!-- <p id="demo"></p>
+    <script>
+        let text = "123456789";
+        let result = text.match(/[1-4]/g);
+        document.getElementById("demo").innerHTML = result;
+    </script> -->
+
+    <!-- <p id="demo"></p>
+    <script>
+        let text = "re, green, red, green, gren, gr, blue, yellow";
+        let result = text.match(/(red|green)/g);
+        document.getElementById("demo").innerHTML = result;
+    </script> -->
+
+    <!-- <p id="demo"></p>
+    <script>
+        let text = "Give 100%!";
+        let result = text.match(/\d/g);
+        document.getElementById("demo").innerHTML = result;
+    </script> -->
+
+    <!-- <p id="demo"></p>
+    <script>
+        let text = "Is this all there is?";
+        let result = text.match(/\s/g);
+        document.getElementById("demo").innerHTML = result;
+    </script> -->
+
+    <!-- <p>"HELLO, LOOK AT YOU!"</p>
+    <p>Found in position: <span id="demo"></span></p>
+    <script>
+        let text = "HELLO, LOOK AT YOU!";
+        let result = text.search(/\bLO/);
+        document.getElementById("demo").innerHTML = result;
+    </script> -->
+
+    <!-- <p id="demo"></p>
+    <script>
+        let text = "Visit W3Schools. Hello World!";
+        let result = text.match(/\u0057/g);
+        document.getElementById("demo").innerHTML = result;
+    </script> -->
+
+    <!-- <p id="demo"></p>
+    <script>
+        let text = "Hellooo World! Hello W3Schools!";
+        let result = text.match(/o+/g);
+        document.getElementById("demo").innerHTML = result;
+    </script> -->
+
+    <!-- <p id="demo"></p>
+    <script>
+        let text = "Hellooo World! Hello W3Schools!";
+        let result = text.match(/lo*/g);
+        document.getElementById("demo").innerHTML = result;
+    </script> -->
+
+    <!-- <p id="demo"></p>
+    <script>
+        let text = "1, 100 or 1000?";
+        let result = text.match(/10?/g);
+        document.getElementById("demo").innerHTML = result;
+    </script> -->
+
+    <!-- <p id="p01">The best things in life are free!</p>
+    <p id="demo"></p>
+    <script>
+        let text = document.getElementById("p01").innerHTML;
+        const pattern = /e/;
+        document.getElementById("demo").innerHTML = pattern.test(text);
+    </script> -->
+
+    <!-- <p id="demo"></p>
+    <script>
+        let text = /e/.test("The best things in life are free!");
+        document.getElementById("demo").innerHTML = text;
+    </script> -->
+
+    <!--<p id="demo"></p>
+    <script>
+        const obj = /e/.exec("The best things in life are free!");
+        document.getElementById("demo").innerHTML =
+            "Found " + obj[0] + " in position " + obj.index + " in the text: " + obj.input;
+    </script> -->
+
+    <!-- <p id="demo"></p>
+    <script>
+        let text = "Give 100%!";
+        let pattern = /\w/g;
+        let result = text.match(pattern);
+
+        document.getElementById("demo").innerHTML = result;
+    </script> -->
+
+    <!-- <p id="demo"></p>
+    <script>
+        let text = "Give 100%!";
+        let pattern = /\W/g;
+        let result = text.match(pattern);
+
+        document.getElementById("demo").innerHTML = result;
+    </script> -->
+
+    <!-- <p id="demo"></p>
+    <script>
+        let pattern = /Hello World/g;
+        let text = pattern.constructor;
+
+        document.getElementById("demo").innerHTML = text;
+    </script> -->
+
+    <!-- <p id="demo"></p>
+    <script>
+        let pattern = /W3S/g;
+        let result = pattern.global;
+
+        document.getElementById("demo").innerHTML = result;
+    </script> -->
+
+    <!-- <p id="demo"></p>
+    <script>
+        let pattern = /W3S/i;
+        let result = pattern.ignoreCase;;
+
+        document.getElementById("demo").innerHTML = result;
+    </script> -->
+
+    <!-- <p id="demo"></p>
+    <script>
+        let text = "The rain in Spain stays mainly in the plain";
+        let pattern = /ain/g;
+        let result = "";
+        while (pattern.test(text) == true) {
+            result += "Found at position " + pattern.lastIndex + "<br>";
+        }
+        document.getElementById("demo").innerHTML = result;
+    </script> -->
+
+    <!-- <p id="demo"></p>
+    <script>
+        let text = "Visit W3Schools!";
+        let pattern = /W3S/gim;
+        let result = pattern.multiline;
+
+        document.getElementById("demo").innerHTML = result;
+    </script> -->
+
+    <!-- <p id="demo"></p>
+    <script>
+        let text = "Visit W3Schools";
+        let pattern = /W3S/g;
+        let result = pattern.source;
+        document.getElementById("demo").innerHTML = result;
+    </script> -->
+
+    <!-- <p id="demo"></p>
+    <script>
+        let pattern = /Hello World/g;
+        let text = pattern.toString();
+        document.getElementById("demo").innerHTML = text;
+    </script> -->
+
+    
+</body>
+
+</html>
