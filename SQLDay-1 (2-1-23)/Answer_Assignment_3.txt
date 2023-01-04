@@ -1,0 +1,122 @@
+1) CREATE TABLE Student_darshan 
+(recid int NOT NULL, 
+Name varchar(255), 
+PRIMARY KEY (recid));
+
+2)CREATE TABLE Studentdetail_darshan
+(recid_1 int NOT NULL,
+studentid int NOT NULL,
+standard int,
+flagsex varchar(100),
+PRIMARY KEY (studentid),
+FOREIGN KEY(recid_1) REFERENCES Student_darshan(recid));
+
+3)CREATE TABLE studentpresent_darshan 
+(recid_2 int not null, 
+studentid_1 int not null,
+ Month int, 
+present int, 
+FOREIGN KEY(recid_2) REFERENCES Student_darshan(recid), 
+FOREIGN KEY(studentid_1) REFERENCES Studentdetail_darshan(studentid));
+
+4)CREATE TABLE studenthours_darshan
+(recid_3 int not null, 
+studentid_2 int not null,
+ Datex Date, 
+Hours int, 
+FOREIGN KEY(recid_3) REFERENCES Student_darshan(recid), 
+FOREIGN KEY(studentid_2) REFERENCES Studentdetail_darshan(studentid));
+
+5)CREATE TABLE Product_darshan 
+(recid_4 int not NULL, 
+pname varchar(250), 
+FOREIGN KEY(recid_4) REFERENCES Student_darshan(recid));
+
+6)CREATE TABLE productprice_darshan 
+(recid_5 int not null, 
+productid int not null, 
+code varchar(100), 
+effdt date, 
+price int, 
+FOREIGN KEY(recid_5) REFERENCES Student_darshan(recid))
+
+Insert record in all tables
+
+1)insert into Student_darshan (recid, Name)
+values 
+(1, 'Jay'),
+(2, 'Mehul'),
+(3, 'Dev'),
+(4, 'Nidhi')
+
+2)insert into Studentdetail_darshan (recid_1, studentid, standard, flagsex)
+values 
+(1, 200, 12, 'Male'),
+(2, 201, 11, 'Male'),
+(3, 202, 10, 'Male'),
+(4, 203, 12, 'Female');
+
+3)insert into studentpresent_darshan (recid_2, studentid_1, Month, present)
+values 
+(1, 200, 6, 18),
+(2, 201, 7, 21),
+(3, 202, 3, 22),
+(4, 203, 9, 20)
+
+4)insert into studenthours_darshan (recid_3, studentid_2, Datex, Hours)
+values 
+(1, 200, '2022-12-12', 8),
+(2, 201, '2023-01-02', 7),
+(3, 202, '2022-10-23', 8),
+(4, 203, '2021-06-09', 6)
+
+5)insert into Product_darshan (recid_4, pname)
+values 
+(1, 'pencil'),
+(2, 'TV'),
+(3, 'Watch'),
+(4, 'Mobile')
+
+6)insert into productprice_darshan
+(recid_5, productid, code, effdt, price) 
+values 
+(1, 300, 'ABC30', '2022-10-23', 200),
+(2, 301, 'XYZ20', '2022-09-20', 250),
+(3, 302, 'ABGH60', '2023-02-27', 150),
+(4, 303, 'APQR30', '2022-06-04', 400);
+
+Modification requirement:
+
+1)Change value of 'student.name' with any other value for student.recid = 3.
+
+Ans: UPDATE Student_darshan SET Name="Deep" where recid=3
+
+2)Update all "student" records to append character " A." as the middle name for "student.name" field.
+
+Ans: UPDATE Student_darshan SET Name = CONCAT(Name,' A.');
+
+3) Update all "productprice" records to add 25.00 in "price" field.
+
+Ans: UPDATE productprice_darshan SET price=price+25;
+
+4)Update "product" table to add "A" in 'product.name' where related 'product.code = ABC30'.
+
+Ans:  Update Product_darshan SET pame = CONCAT(pname,'A') where recid_4 IN(Select recid_5 from productprice_darshan where code='ABC30');
+
+5) Update all "studentpresent" records to add 2 in 'studentpresentpresent' where related 'studenthours.hours >= 8'.
+
+Ans:Update studentpresent_darshan SET present=present+2 where recid_2 IN (Select recid_3 from studenthours_darshan where hours>=8);
+
+Delete requirement:
+
+1) Remove a record from "product" table where 'product.recid = 4'
+
+Ans: Delete from Product_darshan where recid_4 = 4;
+
+2) Remove all "student" records where the 'student.name' starts with character "N"
+
+Ans: Delete from Student_darshan where Name LIKE 'N%';
+
+3) Remove all "studentdetails" record where related 'studenthours.hours <= 6'.
+
+Ans: Delete from Studentdetail_darshan where recid_1 IN (Select recid_3 from studenthours_darshan where hours<=6)

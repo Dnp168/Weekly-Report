@@ -1,0 +1,63 @@
+1) Write a query which will return value '5.0' for input value of '4.1' as well as '4.8'.
+
+Ans: SELECT CEIL(4.1);
+     SELECT CEIL(4.8);
+
+2)Write a query which will return value '4.0' for input value of '4.1' as well as '4.8'.
+
+Ans: SELECT FLOOR(4.1);
+     SELECT FLOOR(4.8);
+
+3)What will be the output of following query:
+	SELECT MOD(11,3) : 2
+	SELECT 11 % 3 : 2
+
+4) Write a query to find 2 raise to power 3.
+
+Ans: SELECT POWER(2, 3);
+
+5) Write a query to generate random number using MySQL function.
+
+Ans: SELECT RAND() as Random_Number;
+
+6) Write a query to supply seed to the function generating random number.
+
+Ans: SELECT RAND(100)
+
+7) Write a query which will return value '4' for '3.5' and '3' for '3.4'.
+
+Ans: SELECT ROUND(3.5) 
+     SELECT ROUND(3.4)   
+
+8) Write a query so that output will be '15.75' for the value '15.7463847'.
+
+Ans: SELECT ROUND(15.7463847,2)
+
+9) Write a query to find square root of given value.
+
+Ans: SELECT SQRT(25) 
+
+\\What will be the output if the provided value is negative?
+Ans: NULL
+
+10) Write a query so that output will be '15.74' for the value '15.7463847'.
+
+Anbs: select round(floor(15.7463847*100)/100,2);
+
+11) Write a query which will output '15.2500' for provided value '15.25
+
+Ans: select round(15.25,4);
+
+Tables Used:=
+
+//Write a query to display all the product names with code in bracket in one column and 2 decimal significant price in second column, 
+	e.g. : MySql book (MS09210) | 10.99
+
+Ans: select concat(pname, ' (',code,')'), ROUND(price, 2) from productprice_darshan natural join Product_darshan;
+
+//Write a query to display following information separated by comma in a single row for the students who have atleast one 'a' in their name. 
+	The column heading should be STUDENTINFO.
+	
+	student name, standard, flag_sex
+
+Ans: select concat(Name,', ',standard,', ',flagsex) as Student_Details from Student_darshan natural join Studentdetail_darshan where Student_darshan.Name like '%e%';

@@ -1,0 +1,104 @@
+Create Student_Details table
+
+CREATE TABLE Student_1 
+(Name varchar(255),
+ Standard int, 
+Sex varchar(100),
+Monthly_Present int, 
+Daily_Hours int)
+
+Create Product table
+
+CREATE TABLE Product_1 
+(Name varchar(255), 
+Price int);
+
+Create Materials table
+
+CREATE TABLE Materials_2 
+(Name varchar(255), 
+Price varchar(100), 
+Effective_Date Date);
+
+Insert Record in Student_Details table
+
+Insert into Student_1 (Name, Standard, Sex, Monthly_Present, Daily_Hours) 
+values 
+('Jay', 11, 'Male', 9, 8), 
+('Mehul', 12, 'Male', 21, 8), 
+('Nidhi', 8, 'Female', 22, 7), 
+('Dev', 12, 'Male', 20, 7); 
+
+Insert Record in Product_1 table
+
+Insert into Product_1 (Name, Price) 
+values 
+('Product1', 100), 
+('Product2', 120), 
+('Product3', 90), 
+('Product4', 200);
+
+Insert Record in Materials Table
+
+Insert into Materials_2 (Name, Price, Effective_Date) 
+values 
+('Material1', 100, '2023-01-02'), 
+('Material2', 200, '2022-06-07'), 
+('Material3', 150, '2022-09-03'), 
+('Material4', 300, '2022-12-23');
+
+Display all the records for each tables separately.
+
+1) Display record for Student_1 table:
+ 
+Select * from Student_1;
+
+2) Display record for Product_1 table:
+ 
+Select * from Product_1;
+
+3) Display record for Materials_=2 table:
+ 
+Select * from Materials_2;
+
+Remove all the records from each tables With using Delete Statements:
+
+1)Remove all the records from Student_1 table:
+
+  Delete from Student_1;
+
+2)Remove all the records from Product_1 table:
+
+  Delete from Product_1;
+
+3)Remove all the records from Materials_2 table:
+
+  Delete from Materials_2;
+
+Remove all the records from each tables Without using Delete Statements:
+
+1)Remove all the records from Student_1 table:
+
+  TRUNCATE TABLE Student_1;  
+
+2)Remove all the records from Product_1 table:
+
+  TRUNCATE TABLE Product_1;
+
+3)Remove all the records from Materials_2 table:
+
+  TRUNCATE TABLE Materials_2;  
+
+Delete All Above tables:
+
+1)Delete Student_1 table:
+
+  Drop table Student_1;
+
+2)Delete Product_1 table:
+
+Drop table Product_1;
+
+3)Delete Materials_2 table:
+
+Drop table Materials_2;

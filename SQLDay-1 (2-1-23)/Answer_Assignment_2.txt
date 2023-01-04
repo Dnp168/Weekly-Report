@@ -1,0 +1,101 @@
+//Create Table
+
+1) CREATE TABLE Student_darshan 
+(recid int NOT NULL, 
+Name varchar(255), 
+PRIMARY KEY (recid));
+
+2)CREATE TABLE Studentdetail_darshan
+(recid_1 int NOT NULL,
+studentid int NOT NULL,
+standard int,
+flagsex varchar(100),
+PRIMARY KEY (studentid),
+FOREIGN KEY(recid_1) REFERENCES Student_darshan(recid));
+
+3)CREATE TABLE studentpresent_darshan 
+(recid_2 int not null, 
+studentid_1 int not null,
+ Month int, 
+present int, 
+FOREIGN KEY(recid_2) REFERENCES Student_darshan(recid), 
+FOREIGN KEY(studentid_1) REFERENCES Studentdetail_darshan(studentid));
+
+4)CREATE TABLE studenthours_darshan
+(recid_3 int not null, 
+studentid_2 int not null,
+ Datex Date, 
+Hours int, 
+FOREIGN KEY(recid_3) REFERENCES Student_darshan(recid), 
+FOREIGN KEY(studentid_2) REFERENCES Studentdetail_darshan(studentid));
+
+Insert Record Into table
+
+1)insert into Student_darshan (recid, Name) 
+values 
+(100, 'Jay'),
+(101, 'Mehul'),
+(102, 'Dev'),
+(103, 'Nidhi');
+
+2)insert into Studentdetail_darshan (recid_1, studentid, standard, flagsex) 
+values 
+(100, 200, 12, 'Male'), 
+(101, 201, 11, 'Male'),
+(102, 202, 10, 'Male'), 
+(103, 203, 12, 'Female');
+
+3)insert into studentpresent_darshan (recid_2, studentid_1, Month, present) 
+values 
+(100, 200, 6, 18), 
+(101, 201, 7, 21),
+(102, 202, 3, 22), 
+(103, 203, 9, 20);
+
+4)insert into studenthours_darshan (recid_3, studentid_2, Datex, Hours) 
+values 
+(100, 200, '2022-12-12', 8), 
+(101, 201, '2023-01-02', 7), 
+(102, 202, '2022-10-23', 8), 
+(103, 203, '2021-06-09', 6);
+
+Write queries for the following requirements.
+
+1)Display following details for each student:
+   
+        -   Name
+        -   Standard
+        -   Sex
+
+Ans : select Name, standard, flagsex from 
+Student_darshan, Studentdetail_darshan 
+where 
+Student_darshan.recid=Studentdetail_darshan.recid_1 order by Name asc;
+
+2)Find SUM of student hours.
+Ans: select Name, sum(hours) as Total_Hours from Student_darshan, studenthours_darshan where Student_darshan.recid=studenthours_darshan.recid_3 group by recid;
+
+3)Find Average Present of each student.
+Ans: select Name, avg(present) as Avg_Present from Student_darshan, studentpresent_darshan where Student_darshan.recid=studentpresent_darshan.recid_2 group by recid_2;
+
+4)Find Minimum present among all students.
+Ans: select Name, min(present) as Minimum_Present from Student_darshan, studentpresent_darshan where Student_darshan.recid=studentpresent_darshan.recid_2 group by recid_2;
+
+5)Find Maximum present among all students.
+Ans: select Name, max(present) as Maximum_Present from Student_darshan, studentpresent_darshan where Student_darshan.recid=studentpresent_darshan.recid_2 group by recid_2;
+
+
+6)Display fields like Name, Date, Hours from "studenthours" table where Date should be in following format :
+
+
+1)Date Formate : YYYY-MM-DD
+select Name, Datex, Hours from Student_darshan, studenthours_darshan where Student_darshan.recid=studenthours_darshan.recid_3;
+
+2)Date Formate : DD/MM/YY
+select Name, DATE_FORMAT(Datex,'%d/%m/%Y') as Datex, Hours from Student_darshan, studenthours_darshan where Student_darshan.recid=studenthours_darshan.recid_3;
+
+3)Date Formate : MM/DD/YY
+select Name, DATE_FORMAT(Datex,'%m/%d/%Y') as Datex, Hours from Student_darshan, studenthours_darshan where Student_darshan.recid=studenthours_darshan.recid_3;
+
+4) Date Formate : MM/DD Day
+select Name, DATE_FORMAT(Datex,'%m/%d  %a') as Datex, Hours from Student_darshan, studenthours_darshan where Student_darshan.recid=studenthours_darshan.recid_3;

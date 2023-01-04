@@ -1,0 +1,52 @@
+	
+Table Used: 
+	
+	-   newstudent (recid, surname, firstname, middlename, gender, admitdate, endeffdt)
+
+
+NOTE :	[I] Please specify the CREATE query for above table as well.
+        => Create table newStudent_darshan 
+           (recid int not null, 
+           surname varchar(10), 
+           firstname varchar(20), 
+           middlename varchar(20), 
+           gender varchar(10), a
+           dmitdate date, endeffdt date);
+
+	[II] In all below queries, fetch and display "Name" field in this format :  
+	"Surname Firstname Middlename".
+	[III] "endeffdt" represents date on which a particular student record was deleted. Hence fetch only active student records from above table.
+
+Q-1	List out the information of students whose surname is "Shah".
+        => Select Concat(surname,' ',firstname,' ',middlename)as Full_Name, gender, admitdate from newStudent_darshan where surname='Shah';
+
+Q-2	List out the information of all the Male students.
+        => Select Concat(surname,' ',firstname,' ',middlename)as Full_Name, gender, admitdate from newStudent_darshan where gender='Male';
+
+Q-3	List out the information of all the Female students, whose surname is "Patel" or have been admitted after than 1-Jan-2006.
+        => Select Concat(surname,' ',firstname,' ',middlename)as Full_Name, gender, admitdate from newStudent_darshan 
+           where gender='Female' and surname='Patel' and admitdate>'2006-06-01';
+
+Q-4	List out the information of all the students whose second name ends with "Bhai".
+        => Select Concat(surname,' ',firstname,' ',middlename)as Full_Name, gender, admitdate from newStudent_darshan where middlename like '%bhai';
+
+Q-5	List out the information of all the students whose first name starts with "V" and second name has "ant".
+        => Select Concat(surname,' ',firstname,' ',middlename)as Full_Name, gender, admitdate from newStudent_darshan where firstname like 'V%' and middlename='Ant';       
+
+Q-6	List out the information of all the students whose surname has "a" in the third place.
+        => Select Concat(surname,' ',firstname,' ',middlename)as Full_Name, gender, admitdate from newStudent_darshan where surname like '__a%';
+
+Q-7	List the name's of the all the students in "Ekta R. Patel" format.
+        => Select Concat(firstname,'  ',LEFT(middlename,1),'.  ',surname)as Full_Name from newStudent_darshan;
+
+Q-8	List out First Name as well as its respective length for all the students.
+        => Select firstname, length(firstname) as Length from newStudent_darshan;
+
+Q-9	Append the First Name with "bhai" for all the male students whose First Name does not 	contain "bhai".
+        =>  Select concat(firstname,'bhai') from newStudent_darshan where gender='male' and firstname not like '%bhai';
+
+Q-10	List out First Name of all the male students with "Mr." before the First Name.
+        => Select concat('Mr.',firstname) from newStudent_darshan where gender='male';
+
+Q-11	List out First Name of all the students which sounds like "Nidhi".
+        => Select firstname from newStudent_darshan where firstname sounds like 'Nidhi';
