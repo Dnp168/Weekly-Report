@@ -1,0 +1,149 @@
+1) DELIMITER //
+   CREATE PROCEDURE sp_GetCars1()
+   BEGIN
+    select * from car_darshan;
+   END //
+   DELIMITER;
+
+   call sp_GetCars1;
+
+2) DELIMITER //
+   CREATE PROCEDURE sp_GetCars2()
+   BEGIN
+    select * from car_darshan where model='i10';
+   END //
+   DELIMITER;
+
+   call sp_GetCars2;
+
+3) DELIMITER //
+   CREATE PROCEDURE getCars1(IN model1 varchar(50))
+   BEGIN
+    select vin,make,model,Year_car,mileage,askprice from car_darshan where model1=model;
+   END //
+   DELIMITER ;
+
+   call getCars1('i10');
+
+4) DELIMITER //
+
+   CREATE PROCEDURE GetTotalcars1()
+   BEGIN
+	DECLARE totalcars INT DEFAULT 0;
+
+    SELECT COUNT(recid)
+    INTO totalcars
+    FROM car_darshan;
+
+    SELECT totalcars;
+   END//
+
+   DELIMITER ;
+   call GetTotalcars1();
+
+5) DELIMITER //
+
+   CREATE PROCEDURE Getcars4 (
+	IN  cars VARCHAR(25),
+	OUT total INT
+   )
+   BEGIN
+	SELECT COUNT(recid)
+	INTO total
+	FROM car_darshan
+	WHERE make = cars;
+   END//
+
+   DELIMITER ;
+
+   CALL Getcars4('Maruti',@total);
+   SELECT @total;
+
+6) SELECT 
+    routine_name
+   FROM
+    information_schema.routines
+   WHERE
+    routine_type = 'PROCEDURE'
+        AND routine_schema = 'classicmodels';
+
+7) DELIMITER //
+
+CREATE PROCEDURE GetCustomerLevel(
+    IN  pCustomerNumber INT,
+    OUT pCustomerLevel  VARCHAR(20))
+BEGIN
+    DECLARE credit DECIMAL DEFAULT 0;
+
+    SELECT creditLimit
+    INTO credit
+    FROM customer_darshan
+    WHERE recid = pCustomerNumber;
+
+    IF credit > 10 THEN
+        SET pCustomerLevel = 'PLATINUM';
+    ELSE
+        SET pCustomerLevel = 'NOT PLATINUM';
+    END IF;
+END//
+
+DELIMITER ;
+CALL GetCustomerLevel(2, @pCustomerLevel);
+SELECT @pCustomerLevel;
+
+8)DELIMITER $$
+CREATE PROCEDURE LoopDemo()
+BEGIN
+	DECLARE x  INT;
+	DECLARE str  VARCHAR(255);
+        
+	SET x = 1;
+	SET str =  '';
+        
+	loop_label:  LOOP
+		IF  x > 10 THEN 
+			LEAVE  loop_label;
+		END  IF;
+            
+		SET  x = x + 1;
+		IF  (x mod 2) THEN
+			ITERATE  loop_label;
+		ELSE
+			SET  str = CONCAT(str,x,',');
+		END  IF;
+	END LOOP;
+	SELECT str;
+END$$
+
+DELIMITER ;
+CALL LoopDemo();
+
+9) DROP PROCEDURE GetCustomerLevel;
+
+10) create Procedure getmarks4
+    (@Mark int,
+    @Count int output)
+    AS
+    begin
+    select *
+    FROM student_marks WHERE marks = @Mark;
+    select @Count = @@ROWCOUNT;
+    end;
+
+    declare @coutn int;
+    exec getmarks4
+    @Mark = 50,
+   @Count = @coutn OUTPUT;
+   select @coutn AS 'Number of row found';
+
+11) join in stored procedure
+DELIMITER //
+create procedure checkdelarname2()
+begin
+  select deal.name,deal.state,deal.city,sale.vin,sale.saleprice from dealership_darshan as deal
+  inner join sale_darshan as sale on sale.dealershipid=deal.recid;
+end//
+DELIMITER;
+
+call checkdelarname2();
+

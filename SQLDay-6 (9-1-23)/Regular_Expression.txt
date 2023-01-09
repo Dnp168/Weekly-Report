@@ -1,0 +1,39 @@
+1) Gives all the names starting with ‘sa’.Example- sam,samarth.
+=> SELECT Name FROM Student_darshan WHERE name REGEXP '^sa';
+
+2) Gives all the names ending with ‘on’.Example – norton,merton.
+=> SELECT Name FROM Student_darshan WHERE name REGEXP 'on$';
+
+3) Gives all the titles containing ‘com’.Example – comedy , romantic comedy.
+=> SELECT Name FROM Student_darshan WHERE Name REGEXP 'com?';
+
+4) Gives all the names containing ‘be’ or ‘ae’.Example – Abel, Baer.
+=> SELECT Name FROM Student_darshan WHERE Name REGEXP 'be|ae';
+
+5) Gives all the names containing ‘j’ or ‘z’.Example – Lorentz, Rajs.
+=> SELECT Name FROM Student_darshan WHERE Name REGEXP '[jz]';
+
+6) Retrieve all names that contain a letter in the range of ‘a’ and ‘z’, followed by any character, followed by the letter ‘a’.
+=> SELECT Name FROM Student_darshan WHERE Name REGEXP '[a-z].[a]';
+
+7) Gives all the names not containing ‘o’ or ‘a’. Example – nerton, sewall.
+=> SELECT Name FROM Student_darshan WHERE Name REGEXP '[^oa]';
+
+8) Gives all the titles ending with character “ack”. Example – Black.
+=> SELECT Name FROM Student_darshan WHERE Name REGEXP 'ack[[:>:]]';
+
+9) Gives all the titles starting with character “for”.
+=> SELECT Name FROM Student_darshan WHERE Name REGEXP '[[:<:]]Sa';
+
+10) Gives all the titles containing alphabetic character only. Example – stranger things, Avengers.
+=> SELECT Name FROM Student_darshan WHERE Name RLIKE '[:alpha:]';
+
+11) Gives all the names starting with ‘n’ or ‘s’. Example – nerton, sewall.
+=> SELECT Name FROM Student_darshan WHERE Name RLIKE '^[js]';
+
+12) Gives all the names not starting with ‘n’ or ‘s’.
+=> SELECT Name FROM Student_darshan WHERE Name NOT RLIKE '^[js]';
+
+13) Gives all the names not starting with ‘n’ or ‘s’.
+=> SELECT * FROM Student_darshan WHERE Name NOT REGEXP '^[js]';
+

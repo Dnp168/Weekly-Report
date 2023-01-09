@@ -1,0 +1,183 @@
+=========================================================================================
+DATABASE :
+=========================================================================================
+
+Assume a hypothetical company that manages multiple automobile dealerships throughout INDIA.
+
+Following are the data requirements of our company :
+
+* A "car" is described by a vehicle identification number (VIN), make (e.g., Toyota), model (e.g., Prius), year, mileage, and two prices: the asking price (how much the dealership would like to sell the car for) and the invoice price (how much the dealership paid for the car). This information is maintained for every car currently in any dealership's inventory, and also for every car that has ever been sold by one of the dealerships. 
+
+* A dealership is a single location where the company sells cars. The company manages many dealerships, each one being described by a unique dealership ID, a name (e.g., Honda Sales, Yamaha World, Concept Hyundai etc.), street address, city, and state.
+
+* The company employs a number of salespeople. Each salesperson is assigned a unique salesperson ID. 
+
+* Salespeople work at one or more dealerships each month, and are paid a monthly base salary at each, regardless of how many cars they sell. Additionally, they are paid a commission on each car they sell. 
+
+* Information is maintained about all salespeople who ever worked for any dealership.
+
+* The following information is kept about each customer : ID, name, street address, city, and state.
+
+* Salespeople are arranged in a strict hierarchy, with each salesperson reporting to a "managing salesperson."
+
+* It is necessary to keep track of the inventory of cars currently available at each dealership. Of course, a particular car can only be in the inventory of one dealership at any given time.
+
+* A long-term record of all car sales is maintained. For each sale, the company tracks which car was bought, which customer bought it, which salesperson sold it, which dealership it was sold by, at which price it was sold for, and on which date it was sold.
+
+   i. car (recid, vin, make, model, year, mileage, askprice, invoiceprice)
+   => create table car_darshan
+      (recid int, vin int,
+      make varchar(20), model varchar(20),
+      Year_car year, mileage int, askprice int,
+      invoiceprice int, primary key(recid));
+
+  ii. dealership (recid, name, address, city, state)
+  =>  create table dealership_darshan (recid int,
+      name varchar(30), address varchar(100),
+      city varchar(30), state varchar(30),
+      primary key(recid));
+
+ iii. salesperson (recid, name)
+ =>   create table salesperson_darshan
+      (recid int, name varchar(30),
+      primary key(recid));
+
+  iv. customer (recid, name, address, city, state)
+  =>  create table customers_darshan (recid int,
+      cname varchar(30), caddress varchar(100),
+      ccity varchar(30), cstate varchar(30),
+      primary key(recid));
+
+   v. reportsto (recid, salespersonid, managingsalespersonid)
+   => create table reportsto_darshan
+      (recid int, salespersonid int,
+      managingsalespersonid int,
+      primary key(recid),
+      foreign key(salespersonid) references salesperson_darshan(recid));
+
+  vi. worksat (recid, salespersonid, dealershipid, monthworked, basesalaryformonth)
+  =>  create table worksat_darshan (
+      recid int, salespersonid int,
+      dealershipid int, monthworked int,
+      basesalaryformonth int,
+      primary key(recid),
+      foreign key(salespersonid) references salesperson_darshan(recid),
+      foreign key(dealershipid) references dealership_darshan(recid));
+
+ vii. inventory (recid, vin, dealershipid)
+ =>   create table inventory_darshan (
+      recid int, vin int,
+      dealershipid int,
+      foreign key(dealershipid) references dealership_darshan(recid));
+    
+ viii. sale (recid, vin, customerid, salespersonid, dealershipid, saleprice, saledate)
+ =>    create table sale_darshan(
+       recid int, vin int,
+       customerid int, salespersonid int,
+       dealershipid int, saleprice int, saledate date,
+       primary key(recid),
+       foreign key(customerid) references customers_darshan(recid),
+       foreign key(salespersonid) references salesperson_darshan(recid),
+       foreign key(dealershipid) references dealership_darshan(recid));
+
+=========================================================================================
+QUERIES :
+=========================================================================================
+
+
+1. Find the names of all salespeople who have ever worked for the company at any dealership.
+=> select name from salesperson_darshan as sale inner join worksat_darshan as work
+   on sale.recid=work.salespersonid inner join dealership_darshan as deal
+   on work.dealershipid=deal.recid;
+
+2. List the Name, Street Address, and City of each customer who lives in Ahmedabad.
+=> select cname, caddress, ccity from customers_darshan where ccity='Ahmedabad';
+
+3. List the VIN, make, model, year, and mileage of all cars in the inventory of the dealership named "Cape Liberty Cruise Port".
+=> select vin, make, model, Year_car, mileage from car_darshan as car inner join inventory_darshan as inv
+   on car.vin=inv.vin inner join dealership_darshan as deal
+   on inv.dealershipid=deal.recid where deal.name='Cape Liberty Cruise Port';
+
+4. List names of all customers who have ever bought cars from the dealership named "Cape Liberty Cruise Port".
+=> select cus.cname, deal.name from customers_darshan as cus inner join sale_darshan as sa
+   on cus.recid=sa.customerid inner join dealership_darshan as deal
+   on sa.dealershipid=deal.recid where deal.name='Cape Liberty Cruise Port';
+
+5. For each car in the inventory of any dealership, list the VIN, make, model, and year of the car, along with the name, city, and state of the dealership whose inventory contains the car.
+=> select ca.vin, ca.make,ca.model,ca.Year_car,de.name,de.city,de.state
+   from car_darshan as ca inner join inventory_darshan as inv
+   on ca.vin=inv.vin inner join dealership_darshan as de
+   on inv.dealershipid=de.recid;
+
+6. Find the names of all salespeople who are managed by a salesperson named "deep".
+=> select sa.name from salesperson_darshan as sa inner join reportsto_darshan as re
+   on sa.recid=re.salespersonid where re.managingsalespersonid=2;
+
+7. Find the names of all salespeople who do not have a manager.
+=> select sa.name from salesperson_darshan as sa inner join reportsto_darshan as re
+   on sa.recid=re.salespersonid where re.managingsalespersonid is null;
+
+8. Find the total number of dealerships.
+=> select count(recid) from dealership_darshan;
+
+9. List the VIN, year, and mileage of all "Toyota Camrys" in the inventory of the dealership named "Toyota Performance". (Note that a "Toyota Camry" is indicated by the make being "Toyota" and the model being "Camry".)
+=> select ca.vin,ca.Year_car,ca.mileage 
+   from car_darshan as ca inner join inventory_darshan as inv
+   on ca.vin=inv.vin inner join dealership_darshan as de
+   on inv.dealershipid=de.recid where ca.make='Maruti' and ca.model='Swift'
+   and de.name='Cape Liberty Cruise Port';
+
+10. Find the name of all customers who bought a car at a dealership located in a state other than the state in which they live.
+=>  select cus.cname from customers_darshan as cus inner join sale_darshan as sa
+    on cus.recid=sa.customerid inner join dealership_darshan as deal
+    on sa.dealershipid=deal.recid where cus.cstate != deal.state;
+
+
+11. Find the name of the salesperson that made the largest base salary working at the dealership named "Nissan 24" during January 2022.
+=>  select sa.name from salesperson_darshan as sa inner join worksat_darshan as sale
+    on sa.recid=sale.salespersonid inner join dealership_darshan as deal
+    on sale.dealershipid=deal.recid where deal.name='Nissan 24'
+    and basesalaryformonth in (select max(basesalaryformonth) from worksat_darshan);
+
+12. Find the salesperson ID and name of all salespeople who have worked at each one of the company's dealerships at some point in time.
+=>  select s.recid,s.name
+    from worksat_darshan w,salesperson_darshan s
+    where s.recid = w.salespersonid
+    group by s.recid,s.name,w.dealershipid
+    having (select count(recid) from dealership) = count(w.dealershipid)
+
+13. List the name, street address, city, and state of any customer who has 
+    bought more than two cars from all dealerships combined since January 1, 2007.
+=>  select cname,caddress,ccity, cstate, count(sale.customerid) from customers_darshan as cus inner join sale_darshan as sale
+    where cus.recid=sale.customerid
+    group by sale.customerid
+    having count(sale.customerid)>=1;
+
+14. List the name, salesperson ID, and total sales amount for each salesperson who has ever sold at least one car. 
+    The total sales amount for a salesperson is the sum of the sale prices of all cars ever sold by that salesperson.
+=>  select sa.name,sale.salespersonid,sum(sale.saleprice) as Total_price from salesperson_darshan as sa inner join sale_darshan as sale
+    on sa.recid=sale.salespersonid group by sale.salespersonid;
+
+15. Find the names of all customers who bought cars during 2007 who were also salespeople during 2007. 
+    For the purpose of this query, assume that no two people have the same name.
+=>  select c.cname from customers_darshan as  c,sale_darshan as s ,salesperson_darshan as sp
+    where s.customerid = c.recid and sp.recid=s.salespersonid
+    and s.saledate between '2022-01-01' and '2022-12-31'
+    group by c.cname;
+
+16. Find the name and salesperson ID of the salesperson who sold the most cars for the company at dealerships located in Gujarat between March 1, 2007 and March 31, 2007.
+=>  select sa.name,sale.salespersonid from salesperson_darshan as sa inner join sale_darshan as sale
+    on sa.recid=sale.salespersonid inner join dealership_darshan as de
+    on sale.dealershipid=de.recid where de.state='Gujarat' and sa.saledate between '2022-01-01' to '2023-01-01';
+
+17. Calculate the payroll for the month of March 2007.
+	* The payroll consists of the name, salesperson ID, and gross pay for each salesperson who worked that month.
+        * The gross pay is calculated as the base salary at each dealership employing the salesperson that month, along with the total commission for the salesperson that month.
+        * The total commission for a salesperson in a month is calculated as 5% of the profit made on all cars sold by the salesperson that month.
+        * The profit made on a car is the difference between the sale price and the invoice price of the car. (Assume, that cars are never sold for less than the invoice price.)
+
+=>  Select sa.name,sale.salespersonid,sale.saledate, (((sale.saleprice-car.invoiceprice)*5)/100) + wor.basesalaryformonth as Gross_Pay
+    from car_darshan as car inner join sale_darshan as sale
+    on car.vin=sale.vin inner join salesperson_darshan as sa
+    on sa.recid=sale.salespersonid inner join worksat_darshan as wor
+    on sale.dealershipid=wor.dealershipid where sale.saledate>'2022-01-01' and sale.saledate<'2023-01-01';
