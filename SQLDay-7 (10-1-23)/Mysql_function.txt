@@ -1,0 +1,191 @@
+Mysql Function
+
+SubQuery
+=> Select name,category from Books where price in 
+   (select price from Books where price>2000);
+
+Derived Table
+=> SELECT sb1, sb2, sb3  
+  FROM (SELECT s1 AS sb1, s2 AS sb2, s3*5 AS sb3 FROM test1) AS test1_set  
+  WHERE sb1 < 4; 
+
+LEAD & LAG functions
+
+=>CREATE TABLE sales_table1 (
+    Employee_Name VARCHAR(45) NOT NULL,
+    Year INT NOT NULL,
+    Country VARCHAR(45) NOT NULL,
+    Product VARCHAR(45) NOT NULL,
+    Sale DECIMAL(12,2) NOT NULL,
+    PRIMARY KEY(Employee_Name, Year)
+);
+
+=>INSERT INTO sales_table1 VALUES
+('Stephen', 2017, 'India', 'Laptop', 10000),
+('Stephen', 2018, 'India', 'Laptop', 15000),    
+('Stephen', 2019, 'India', 'TV', 20000),
+('Bob', 2017, 'US', 'Computer', 15000),    
+('Bob', 2018, 'US', 'Computer', 10000),
+('Bob', 2019, 'US', 'TV', 20000),
+('Mandy', 2017, 'Canada', 'Mobile', 20000),
+('Mandy', 2018, 'Canada', 'Calculator', 1500),
+('Mandy', 2019, 'Canada', 'Mobile', 25000);
+
+=>SELECT YEAR, Product,Country, Sale,
+  LEAD(Sale) OVER (PARTITION BY YEAR ORDER BY Country) AS Next_Sale
+  FROM sales_table1;
+
+=>SELECT YEAR, Product,Country, Sale,
+  LAG(Sale) OVER (PARTITION BY YEAR ORDER BY Country) AS Next_Sale
+  FROM sales_table1;
+
+MySQL String Functions
+
+ASCII() // Returns the ASCII value for the specific character
+=>SELECT ASCII(Country) AS NumCodeOfFirstChar FROM sales_table1; 
+
+CHAR_LENGTH // Returns the length of a string (in characters)
+=>SELECT CHAR_LENGTH("SQL Tutorial") AS LengthOfString;
+
+CONCAT // Adds two or more expressions together
+=> SELECT CONCAT("SQL ", "Tutorial ", "is ", "fun!") AS ConcatenatedString;
+
+CONCAT_WS // Adds two or more expressions together with a separator
+=> SELECT CONCAT_WS("-", "SQL", "Tutorial", "is", "fun!") AS ConcatenatedString;
+
+FIELD // Returns the index position of a value in a list of values
+=> SELECT FIELD("q", "s", "q", "l");
+
+FIND_IN_SET // Returns the position of a string within a list of strings
+=> SELECT FIND_IN_SET("q", "s,q,l");
+
+=> SELECT FORMAT(250500.5634, 2);
+
+=> SELECT INSERT("W3Schools.com", 1, 9, "Example");
+
+=>SELECT LCASE("SQL Tutorial is FUN!");
+
+=> SELECT LEFT("SQL Tutorial", 3) AS ExtractString;
+
+=> SELECT LENGTH("SQL Tutorial") AS LengthOfString;
+
+=> SELECT LOCATE("3", "W3Schools.com") AS MatchPosition;
+
+=>SELECT LOWER("SQL Tutorial is FUN!");
+
+=>SELECT LPAD("SQL Tutorial", 20, "ABC");
+
+=>SELECT LTRIM("     SQL Tutorial") AS LeftTrimmedString;
+
+=>SELECT MID("SQL Tutorial", 5, 3) AS ExtractString;
+
+=>SELECT POSITION("3" IN "W3Schools.com") AS MatchPosition;
+
+=>SELECT REPEAT("SQL Tutorial", 3);
+
+=>SELECT REPLACE("SQL Tutorial", "SQL", "HTML");
+
+=>SELECT REVERSE("SQL Tutorial");
+
+=>SELECT RIGHT("SQL Tutorial is cool", 4) AS ExtractString;
+
+=>SELECT RPAD("SQL Tutorial", 20, "ABC");
+
+=>SELECT RTRIM("SQL Tutorial     ") AS RightTrimmedString;
+
+=>SELECT STRCMP("SQL Tutorial", "SQL Tutorial");
+
+=>SELECT SUBSTR("SQL Tutorial", 5, 3) AS ExtractString;
+
+=>SELECT SUBSTRING("SQL Tutorial", 5, 3) AS ExtractString;
+
+=>SELECT SUBSTRING_INDEX("www.w3schools.com", ".", 1);
+
+=>SELECT TRIM('    SQL Tutorial    ') AS TrimmedString;
+
+=>SELECT UCASE("SQL Tutorial is FUN!");
+
+=>SELECT UPPER("SQL Tutorial is FUN!");
+
+
+Number functions
+
+=>SELECT ABS(-243.5);
+=>SELECT ACOS(-0.8);
+=>SELECT ASIN(0.25);
+=>SELECT ATAN(2.5);
+=>SELECT AVG(price) AS AveragePrice FROM Books;
+=>SELECT CEIL(25.75);
+=>SELECT CEILING(25.75);
+=>SELECT COUNT(Country) AS NumberOfCountry FROM sales_table1 where Year=2017;
+=>SELECT FLOOR(25.75);
+=>SELECT GREATEST(3, 12, 34, 8, 25);
+=>SELECT LEAST(3, 12, 34, 8, 25);
+=>SELECT LN(2);
+=>SELECT LOG(2);
+=>SELECT LOG10(2);
+=>SELECT LOG2(6);
+=>SELECT MAX(Price) AS LargestPrice FROM Products;
+=>SELECT MIN(Price) AS SmallestPrice FROM Products;
+=>SELECT MOD(18, 4);
+=>SELECT PI();
+=>SELECT POW(4, 2);
+=>SELECT POWER(4, 2);
+=>SELECT ROUND(135.375, 2);
+=>SELECT SIGN(255.5);
+=>SELECT SIN(-1);
+=>SELECT SQRT(64);
+=>SELECT SUM(price) AS TotalItemsOrdered FROM Books;
+=>SELECT TRUNCATE(135.335, 2);
+
+
+Ranking Function
+dense_rank()
+=>SELECT subject, name, mark, dense_rank() 
+  OVER ( partition by subject order by mark desc ) 
+  AS 'dense_rank' FROM student_1;
+
+rank() function
+=> SELECT subject, name, mark, rank() 
+   OVER ( partition by subject order by mark desc ) 
+   AS 'rank' FROM student_1;
+
+percent_rank() function
+=>SELECT subject, name, mark, percent_rank() 
+  OVER ( partition by subject order by mark ) 
+  AS 'percent_rank' FROM student_1;
+
+Union
+=>SELECT make,model FROM car_darshan
+  UNION
+  select vin,saleprice from sale_darshan;
+
+minus
+=>SELECT Id FROM tab1  
+  LEFT JOIN tab2 USING (Id)  
+  WHERE tab2.Id IS NULL; 
+
+Intersect
+=>SELECT DISTINCT
+   Id
+  FROM tab1
+   INNER JOIN tab2 USING(id);
+
+ENUM
+=>CREATE TABLE Student_grade(
+  id INT PRIMARY KEY AUTO_INCREMENT, Grade VARCHAR(250) NOT NULL,
+  priority ENUM('Low', 'Medium', 'High') NOT NULL
+  );
+
+convert
+=> SELECT CONVERT("2017-08-29", DATE);
+
+Date & Time
+=>SELECT ADDDATE('1997-01-02', 31); 
+
+Literals
+=>SELECT stud_code, phone FROM student_info WHERE stud_name = 'Joseph';  
+
+
+
+

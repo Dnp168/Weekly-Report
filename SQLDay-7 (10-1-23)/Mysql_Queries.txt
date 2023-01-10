@@ -1,0 +1,51 @@
+MySQL Queries & Indexes
+
+Insert
+=> insert into Student_darshan (recid,Name) values (7, 'Mehul');
+
+select
+=> select name from Student_darshan where recid >=3;
+
+update
+=> update Student_darshan set name='Mohit' where recid=7
+
+delete
+=> delete from Student_darshan where name='Mohit';
+
+replace
+=>SELECT REPLACE("Darshan Patel", "Darshan", "Deep"); 
+
+create
+=> create table student_a1 (recid int, name varchar(10), primary key (recid));
+
+drop
+=> drop table student_a1;
+
+show
+=> SHOW PROCEDURE CODE sp_GetCars1;
+
+unique
+=>CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    CONSTRAINT UC_Person UNIQUE (ID,LastName)
+);
+
+
+clustered & Non-clustered Indexes
+
+=>CREATE TABLE Books
+(
+id INT PRIMARY KEY NOT NULL,// clustered index
+name VARCHAR(50) NOT NULL,
+category VARCHAR(50) NOT NULL,
+price INT NOT NULL
+);
+
+Non-clustered Indexes
+=> create nonclustered index price_of_books
+on Books (price ASC);
+
+
